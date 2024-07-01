@@ -19,7 +19,6 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
     marginBottom: 20
-
   },
   input: {
     flex: 1,
@@ -47,5 +46,11 @@ export const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     marginBottom: 42
+  },
+  noTasksText: {
+    color: "#999999",
+    fontSize: 14,
+    textAlign: "center",
+    marginTop: 20
   }
 })
