@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, TextInput, TouchableOpacity, View, FlatList } from "react-native";
+import { Text, TextInput, TouchableOpacity, View, FlatList, Alert } from "react-native";
 import { styles } from "./style";
 import { Tasks } from "../../components/Tasks";
 
@@ -38,9 +38,18 @@ export function Home() {
     setNewTaskName("");
   }
 
-  function handleTaskRemove(id: number) {
-    const updatedTasks = tasks.filter(task => task.id !== id);
-    setTasks(updatedTasks);
+  function handleTaskRemove(id: number, name: string) {
+
+    Alert.alert("Remover", `Deseja finalizar a tarefa "${name}"?`, [
+      {
+        text: "Não",
+        style: "cancel"
+      },
+      {
+        text: "Sim",
+        onPress: () => setTasks(prevState => tasks.filter(task => task.id !== id))
+      }
+    ])
   }
 
   return (
@@ -78,7 +87,7 @@ export function Home() {
           renderItem={({ item }) => (
             <Tasks
               TaskName={item.name}
-              TaskRemove={() => handleTaskRemove(item.id)}
+              TaskRemove={() => handleTaskRemove(item.id, item.name)}
             />
           )}
           showsVerticalScrollIndicator={false}
